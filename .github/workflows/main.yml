@@ -23,23 +23,23 @@ jobs:
     steps:
       # 始终包含检出步骤，以便Godot可用以导出项目
     - name: 检出
-      uses: actions/checkout@v3.3.0
+      uses: actions/checkout@v4
   
     - name: 导出游戏
       id: export
       # 使用最新版本（查看所有版本的发布）
-      uses: firebelley/godot-export@v5.2.0
+      uses: firebelley/godot-export@v6.0.0
       with:
         # 定义所有必需的输入
-        godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
-        godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
+        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.2/Godot_v4.2-stable_linux.x86_64.zip
+        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.2/Godot_v4.2-stable_export_templates.tpz
         relative_project_path: ./
         archive_output: true
         
       # 这个发布操作对我来说效果不错。但是，你可以选择任何你喜欢的发布操作。
       # https://github.com/ncipollo/release-action
     - name: 创建发布
-      uses: ncipollo/release-action@v1.12.0
+      uses: ncipollo/release-action@v1.14.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         generateReleaseNotes: true
