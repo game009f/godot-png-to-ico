@@ -1,4 +1,4 @@
-name: CI
+name: Build
 
 #控制工作流何时运行
 on:
@@ -21,10 +21,24 @@ jobs:
     # 作业名，可自定义
     name: 导出游戏
     steps:
+    - name: 使用自定义配置
+      run: |
+        mkdir -p ~/.config/godot
+        cp dist/editor_settings-4.tres ~/.config/godot/
+        
       # 始终包含检出步骤，以便Godot可用以导出项目
     - name: 检出
       uses: actions/checkout@v4
-  
+      
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+    
     - name: 导出游戏
       id: export
       # 使用最新版本（查看所有版本的发布）
