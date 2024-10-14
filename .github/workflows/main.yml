@@ -24,7 +24,7 @@ jobs:
     - name: 使用自定义配置
       run: |
         mkdir -p ~/.config/godot
-        cp ~/path/to/my/editor_settings-3.tres ~/.config/godot/
+        cp ~/dist/editor_settings-4.tres ~/.config/godot/
         
       # 始终包含检出步骤，以便Godot可用以导出项目
     - name: 检出
